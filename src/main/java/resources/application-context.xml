@@ -19,6 +19,7 @@
             <list>
                 <value>classpath:jdbc.properties</value>
                 <value>classpath:redis.properties</value>
+                <value>classpath:rabbitmq.properties</value>
             </list>
         </property>
     </bean>
@@ -34,4 +35,7 @@
 
     <!--spring-mvc.xml-->
     <import resource="spring-mvc.xml"/>
+
+    <!-- rabbitmq配置文件 -->
+    <import resource="spring-rabbitmq.xml"/>
 </beans>
