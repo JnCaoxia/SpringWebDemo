@@ -20,6 +20,7 @@
                 <value>classpath:jdbc.properties</value>
                 <value>classpath:redis.properties</value>
                 <value>classpath:rabbitmq.properties</value>
+                <value>classpath:job.properties</value>
             </list>
         </property>
     </bean>
@@ -38,4 +39,7 @@
 
     <!-- rabbitmq配置文件 -->
     <import resource="spring-rabbitmq.xml"/>
+
+    <!--quartz 定时任务 spring-quartz-job.xml-->
+    <import resource="spring-quartz-job.xml"/>
 </beans>

@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -82,5 +83,26 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
         boolean res = userDao.delete("402891815170e8de015170f6520b0000");
         Assert.assertTrue(res);
         log.info("call testDeleteUser :{}", res);
+    }
+
+    @Test
+    public void test2(){
+//        String requestUrl = "/index/";
+        String requestUrl = "/task/processDiagramTrace/441829821983404487374db7fc9c96b6";
+//        String requestUrl = "/task/getProcessTaskToDoPage";
+
+        String requestUrlsByGet = "/task/processDiagramTrace/";
+        String compareParamUrl = requestUrl.split("/")[requestUrl.split("/").length -1];
+
+        String ignoreMenuList = "/task/processDiagramTrace/,/abc/url,/task/getProcessTaskToDoPage";
+        String compareParamUrlPre = requestUrl.split(compareParamUrl)[0];
+        if(!("/".equals(compareParamUrlPre)) && Arrays.asList(requestUrlsByGet.trim().split(",")).contains(compareParamUrlPre)){
+            requestUrl = compareParamUrlPre;
+        }
+        log.info("call compareParamUrl :{}", compareParamUrl);
+        log.info("call requestUrl:{}",requestUrl);
+        log.info("call ignoreMenuList :{}", Arrays.asList(ignoreMenuList.split(",")));
+        log.info("call compareParamUrl :{}", Arrays.asList(ignoreMenuList.trim().split(",")).contains(requestUrl.trim()));
+        log.info("call compareParamUrlPre :{}", compareParamUrlPre);
     }
 }

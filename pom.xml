@@ -30,6 +30,7 @@
     <!--rabbitmq-->
     <spring.rabbit.version>1.7.5.RELEASE</spring.rabbit.version>
     <fastjson.version>1.1.27</fastjson.version>
+    <quartz.version>2.2.1</quartz.version>
   </properties>
 
   <dependencies>
@@ -192,6 +193,19 @@
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
       <version>${fastjson.version}</version>
+    </dependency>
+
+    <!-- quartz -->
+    <dependency>
+      <groupId>org.quartz-scheduler</groupId>
+      <artifactId>quartz</artifactId>
+      <version>${quartz.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>
