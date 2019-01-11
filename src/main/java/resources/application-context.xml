@@ -38,8 +38,11 @@
     <import resource="spring-mvc.xml"/>
 
     <!-- rabbitmq配置文件 -->
-    <import resource="spring-rabbitmq.xml"/>
+    <!--<import resource="spring-rabbitmq.xml"/>-->
 
     <!--quartz 定时任务 spring-quartz-job.xml-->
     <import resource="spring-quartz-job.xml"/>
+
+    <!--spring-activemq配置文件-->
+    <import resource="spring-activemq.xml"/>
 </beans>

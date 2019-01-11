@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/jms
+        http://www.springframework.org/schema/jms/spring-jms-4.0.xsd
+        http://activemq.apache.org/schema/core
+        http://activemq.apache.org/schema/core/activemq-core-5.14.1.xsd">
+    <description>spring-activeMQ</description>
+    <!-- 获取ActiveMQ提供的ConnectionFactory -->
+    <amq:connectionFactory id="amqConnectionFactory" brokerURL="tcp://127.0.0.1:61616" userName="admin" password="admin"></amq:connectionFactory>
+
+    <!-- spring连接activeMQ的conneciotnFactory -->
+    <bean id="activeMQConnectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+        <constructor-arg ref="amqConnectionFactory"></constructor-arg>
+        <property name="sessionCacheSize" value="100" />
+    </bean>
+
+    <!-- 定义JmsTemplate的Queue类型 -->
+    <bean id="jmsQueueTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <!-- 这个connectionFactory对应的是我们定义的Spring提供的那个ConnectionFactory对象 -->
+        <constructor-arg ref="activeMQConnectionFactory"></constructor-arg>
+        <!-- 非pub/sub模型（发布/订阅），即队列模式 -->
+        <property name="pubSubDomain" value="false" />
+    </bean>
+
+    <!-- 定义JmsTemplate的Topic类型 -->
+    <bean id="jmsTopicTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <!-- 这个connectionFactory对应的是我们定义的Spring提供的那个ConnectionFactory对象 -->
+        <constructor-arg ref="activeMQConnectionFactory"></constructor-arg>
+        <!-- pub/sub模型（发布/订阅） -->
+        <property name="pubSubDomain" value="true" />
+    </bean>
+
+
+    <bean id="queueReceiver" class="com.caox.activemq.annotation.queue.QueueReceiver"></bean>
+    <!-- 定义Queue监听器 -->
+    <jms:listener-container destination-type="queue" container-type="default" connection-factory="activeMQConnectionFactory" acknowledge="auto">
+        <jms:listener destination="test.queue" ref="queueReceiver"/>
+    </jms:listener-container>
+
+    <bean id="topicReceiver" class="com.caox.activemq.annotation.topic.TopicReceiver"></bean>
+    <!-- 定义Topic监听器 -->
+    <jms:listener-container destination-type="topic" container-type="default" connection-factory="activeMQConnectionFactory" acknowledge="auto">
+        <jms:listener destination="test.topic" ref="topicReceiver"/>
+    </jms:listener-container>
+</beans>

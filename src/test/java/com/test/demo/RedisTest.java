@@ -1,5 +1,7 @@
 package com.test.demo;
 
+import com.caox.activemq.annotation.queue.QueueSender;
+import com.caox.activemq.annotation.topic.TopicSender;
 import com.caox.dao.DemoDao;
 import com.caox.dao.IUserDao;
 import com.caox.model.User;
@@ -33,6 +35,12 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
 
     @Autowired
     private DemoDao demoDao;
+
+    @Autowired
+    private QueueSender queueSender;
+
+    @Autowired
+    private TopicSender topicSender;
 
     @Test
     public void testDB(){
@@ -104,5 +112,14 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
         log.info("call ignoreMenuList :{}", Arrays.asList(ignoreMenuList.split(",")));
         log.info("call compareParamUrl :{}", Arrays.asList(ignoreMenuList.trim().split(",")).contains(requestUrl.trim()));
         log.info("call compareParamUrlPre :{}", compareParamUrlPre);
+    }
+
+    @Test
+    public void testActiveMq(){
+        String queueName = "test.queue";
+        String message = "hello ugly girl twice!";
+
+        queueSender.send(queueName, message);
+        topicSender.send("test2.topic",message);
     }
 }
