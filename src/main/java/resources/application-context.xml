@@ -21,6 +21,7 @@
                 <value>classpath:redis.properties</value>
                 <value>classpath:rabbitmq.properties</value>
                 <value>classpath:job.properties</value>
+                <value>classpath:rocketmq.properties</value>
             </list>
         </property>
     </bean>
@@ -44,5 +45,8 @@
     <import resource="spring-quartz-job.xml"/>
 
     <!--spring-activemq配置文件-->
-    <import resource="spring-activemq.xml"/>
+    <!--<import resource="spring-activemq.xml"/>-->
+
+    <!--spring-rocket配置文件-->
+    <import resource="spring-rocketmq.xml" />
 </beans>

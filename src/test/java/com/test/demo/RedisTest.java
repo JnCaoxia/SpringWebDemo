@@ -1,10 +1,9 @@
 package com.test.demo;
 
-import com.caox.activemq.annotation.queue.QueueSender;
-import com.caox.activemq.annotation.topic.TopicSender;
 import com.caox.dao.DemoDao;
 import com.caox.dao.IUserDao;
 import com.caox.model.User;
+import com.caox.rocketmq.service.RocketService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -35,12 +34,15 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
 
     @Autowired
     private DemoDao demoDao;
+//
+//    @Autowired
+//    private QueueSender queueSender;
+//
+//    @Autowired
+//    private TopicSender topicSender;
 
     @Autowired
-    private QueueSender queueSender;
-
-    @Autowired
-    private TopicSender topicSender;
+    private RocketService rocketService;
 
     @Test
     public void testDB(){
@@ -119,7 +121,12 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
         String queueName = "test.queue";
         String message = "hello ugly girl twice!";
 
-        queueSender.send(queueName, message);
-        topicSender.send("test2.topic",message);
+//        queueSender.send(queueName, message);
+//        topicSender.send("test.topic",message);
+    }
+
+    @Test
+    public void testRocketMQ() throws Exception{
+        rocketService.send("test_rocketmq_topic2","rocketmq_tag2","hello rocketmq !");
     }
 }
