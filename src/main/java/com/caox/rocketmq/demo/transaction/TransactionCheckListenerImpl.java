@@ -8,20 +8,20 @@ import com.alibaba.rocketmq.common.message.MessageExt;
  * @author : nazi
  * @version : 1.0
  * @date : 2019/1/15 15:38
- * æœªå†³äº‹åŠ¡ï¼ŒæœåŠ¡å™¨å›æŸ¥å®¢æˆ·ç«¯ï¼ˆé˜‰å‰²æ‰äº†ï¼‰
+ * Î´¾öÊÂÎñ£¬·şÎñÆ÷»Ø²é¿Í»§¶Ë£¨ÑË¸îµôÁË£©
  */
 public class TransactionCheckListenerImpl implements TransactionCheckListener {
     // private AtomicInteger transactionIndex = new AtomicInteger(0);
-    // åœ¨è¿™é‡Œï¼Œæˆ‘ä»¬å¯ä»¥æ ¹æ®ç”±MQå›ä¼ çš„keyå»æ•°æ®åº“æŸ¥è¯¢ï¼Œè¿™æ¡æ•°æ®åˆ°åº•æ˜¯æˆåŠŸäº†è¿˜æ˜¯å¤±è´¥äº†ã€‚
+    // ÔÚÕâÀï£¬ÎÒÃÇ¿ÉÒÔ¸ù¾İÓÉMQ»Ø´«µÄkeyÈ¥Êı¾İ¿â²éÑ¯£¬ÕâÌõÊı¾İµ½µ×ÊÇ³É¹¦ÁË»¹ÊÇÊ§°ÜÁË¡£
 
     /**
-     * å› ä¸ºRMQåœ¨3.0.8çš„æ—¶å€™è¿˜æ˜¯æ”¯æŒcheck listenerå›æŸ¥æœºåˆ¶çš„ï¼Œä½†æ˜¯åˆ°äº†3.2.6çš„æ—¶å€™å°†äº‹åŠ¡å›æŸ¥æœºåˆ¶â€œé˜‰å‰²â€äº†ï¼
+     * ÒòÎªRMQÔÚ3.0.8µÄÊ±ºò»¹ÊÇÖ§³Öcheck listener»Ø²é»úÖÆµÄ£¬µ«ÊÇµ½ÁË3.2.6µÄÊ±ºò½«ÊÂÎñ»Ø²é»úÖÆ¡°ÑË¸î¡±ÁË£¡
      * @param msg
      * @return
      */
     @Override
     public LocalTransactionState checkLocalTransactionState(MessageExt msg) {
-        System.out.println("æœªå†³äº‹åŠ¡ï¼ŒæœåŠ¡å™¨å›æŸ¥å®¢æˆ·ç«¯msg =" + new String(msg.getBody().toString()));
+        System.out.println("Î´¾öÊÂÎñ£¬·şÎñÆ÷»Ø²é¿Í»§¶Ëmsg =" + new String(msg.getBody().toString()));
         // return LocalTransactionState.ROLLBACK_MESSAGE;
         return LocalTransactionState.COMMIT_MESSAGE;
         // return LocalTransactionState.UNKNOW;

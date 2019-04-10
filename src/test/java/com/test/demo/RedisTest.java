@@ -149,7 +149,7 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
     }
 
     /**
-     * å¯ç¼“å­˜çº¿ç¨‹æ±  æ— ç•Œçº¿ç¨‹æ± ï¼Œå¯ä»¥è¿›è¡Œè‡ªåŠ¨çº¿ç¨‹å›æ”¶
+     * ¿É»º´æÏß³Ì³Ø ÎŞ½çÏß³Ì³Ø£¬¿ÉÒÔ½øĞĞ×Ô¶¯Ïß³Ì»ØÊÕ
      */
     @Test
     public void testNewCachedThreadPool(){
@@ -170,13 +170,13 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
     }
 
     /**
-     * newFixedThreadPool å›ºå®šå¤§å°çº¿ç¨‹æ± 
+     * newFixedThreadPool ¹Ì¶¨´óĞ¡Ïß³Ì³Ø
      */
     @SuppressWarnings("all")
     @Test
     public void testNewFixedThreadPool(){
         ExecutorService fixedThreadPool = Executors.newFixedThreadPool(4);
-        log.info("å®šé•¿çº¿ç¨‹æ± çš„å¤§å°:{}", Runtime.getRuntime().availableProcessors());
+        log.info("¶¨³¤Ïß³Ì³ØµÄ´óĞ¡:{}", Runtime.getRuntime().availableProcessors());
         for (int i = 0; i < 10; i++) {
             final int index = i;
 
@@ -196,7 +196,7 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
     }
 
     /**
-     * å•çº¿ç¨‹åŒ–çš„Executor
+     * µ¥Ïß³Ì»¯µÄExecutor
      */
     @SuppressWarnings("all")
     @Test
@@ -220,7 +220,7 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
     }
 
     /**
-     * å®šæ—¶å‘¨æœŸæ€§ä»»åŠ¡æ‰§è¡Œ newScheduleThreadPool
+     * ¶¨Ê±ÖÜÆÚĞÔÈÎÎñÖ´ĞĞ newScheduleThreadPool
      */
     @Test
     public void testNewScheduleThreadPool(){
@@ -257,29 +257,29 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
             e1.printStackTrace();
         }
 
-        System.out.println("ä¸»çº¿ç¨‹åœ¨æ‰§è¡Œä»»åŠ¡");
+        System.out.println("Ö÷Ïß³ÌÔÚÖ´ĞĞÈÎÎñ");
 
         try {
-            System.out.println("taskè¿è¡Œç»“æœ"+result.get());
+            System.out.println("taskÔËĞĞ½á¹û"+result.get());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
 
-        System.out.println("æ‰€æœ‰ä»»åŠ¡æ‰§è¡Œå®Œæ¯•");
+        System.out.println("ËùÓĞÈÎÎñÖ´ĞĞÍê±Ï");
     }
 
     @Test
     public void  testCallableFutureTask(){
-        //ç¬¬ä¸€ç§æ–¹å¼
+        //µÚÒ»ÖÖ·½Ê½
 //        ExecutorService executor = Executors.newCachedThreadPool();
 //        Task task = new Task();
 //        FutureTask<Integer> futureTask = new FutureTask<Integer>(task);
 //        executor.submit(futureTask);
 //        executor.shutdown();
 
-        //ç¬¬äºŒç§æ–¹å¼ï¼Œæ³¨æ„è¿™ç§æ–¹å¼å’Œç¬¬ä¸€ç§æ–¹å¼æ•ˆæœæ˜¯ç±»ä¼¼çš„ï¼Œåªä¸è¿‡ä¸€ä¸ªä½¿ç”¨çš„æ˜¯ExecutorServiceï¼Œä¸€ä¸ªä½¿ç”¨çš„æ˜¯Thread
+        //µÚ¶şÖÖ·½Ê½£¬×¢ÒâÕâÖÖ·½Ê½ºÍµÚÒ»ÖÖ·½Ê½Ğ§¹ûÊÇÀàËÆµÄ£¬Ö»²»¹ıÒ»¸öÊ¹ÓÃµÄÊÇExecutorService£¬Ò»¸öÊ¹ÓÃµÄÊÇThread
         Task task = new Task();
         FutureTask<Integer> futureTask = new FutureTask<Integer>(task);
         Thread thread = new Thread(futureTask);
@@ -291,17 +291,17 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
             e1.printStackTrace();
         }
 
-        System.out.println("ä¸»çº¿ç¨‹åœ¨æ‰§è¡Œä»»åŠ¡");
+        System.out.println("Ö÷Ïß³ÌÔÚÖ´ĞĞÈÎÎñ");
 
         try {
-            System.out.println("taskè¿è¡Œç»“æœ"+futureTask.get());
+            System.out.println("taskÔËĞĞ½á¹û"+futureTask.get());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
 
-        System.out.println("æ‰€æœ‰ä»»åŠ¡æ‰§è¡Œå®Œæ¯•");
+        System.out.println("ËùÓĞÈÎÎñÖ´ĞĞÍê±Ï");
     }
 
     @Test
@@ -321,7 +321,7 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
 
     @Test
     public void testCarFactoryBean() throws Exception{
-        // è·å–CarFactoryBeançš„å®ä¾‹
+        // »ñÈ¡CarFactoryBeanµÄÊµÀı
         CarFactoryBean carFactoryBean = (CarFactoryBean) context.getBean("&car");
         Car car = carFactoryBean.getObject();
         log.info("call testCarFactoryBean RESULT:{}", car);
@@ -408,7 +408,7 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
 class Task implements Callable<Integer>{
     @Override
     public Integer call() throws Exception {
-        System.out.println("å­çº¿ç¨‹åœ¨è¿›è¡Œè®¡ç®—");
+        System.out.println("×ÓÏß³ÌÔÚ½øĞĞ¼ÆËã");
         Thread.sleep(3000);
         int sum = 0;
         for(int i=0;i<100;i++)

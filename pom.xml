@@ -18,14 +18,14 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <!-- springç‰ˆæœ¬å· -->
+    <!-- spring°æ±¾ºÅ -->
     <spring.version>4.1.1.RELEASE</spring.version>
-    <!-- mybatisç‰ˆæœ¬å· -->
+    <!-- mybatis°æ±¾ºÅ -->
     <mybatis.version>3.2.6</mybatis.version>
-    <!-- log4jæ—¥å¿—æ–‡ä»¶ç®¡ç†åŒ…ç‰ˆæœ¬ -->
+    <!-- log4jÈÕÖ¾ÎÄ¼þ¹ÜÀí°ü°æ±¾ -->
     <slf4j.version>1.7.7</slf4j.version>
     <log4j.version>1.2.17</log4j.version>
-    <!-- jacksonåŒ…ç‰ˆæœ¬ -->
+    <!-- jackson°ü°æ±¾ -->
     <jackson.version>2.5.0</jackson.version>
     <!--rabbitmq-->
     <spring.rabbit.version>1.7.5.RELEASE</spring.rabbit.version>
@@ -41,7 +41,7 @@
       <scope>test</scope>
     </dependency>
 
-    <!--springå•å…ƒæµ‹è¯•ä¾èµ– -->
+    <!--springµ¥Ôª²âÊÔÒÀÀµ -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
@@ -49,14 +49,14 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- springMVCæ ¸å¿ƒåŒ… -->
+    <!-- springMVCºËÐÄ°ü -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
       <version>${spring.version}</version>
     </dependency>
 
-    <!-- springæ ¸å¿ƒåŒ… -->
+    <!-- springºËÐÄ°ü -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
@@ -129,7 +129,7 @@
     </dependency>
     <!-- AOP end -->
 
-    <!-- Mysqlæ•°æ®åº“é©±åŠ¨åŒ… -->
+    <!-- MysqlÊý¾Ý¿âÇý¶¯°ü -->
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
@@ -322,7 +322,7 @@
       </plugin>
     </plugins>
 
-    <!-- è§£å†³Mavené¡¹ç›®ç¼–è¯‘åŽclassesæ–‡ä»¶ä¸­æ²¡æœ‰.xmlé—®é¢˜ -->
+    <!-- ½â¾öMavenÏîÄ¿±àÒëºóclassesÎÄ¼þÖÐÃ»ÓÐ.xmlÎÊÌâ -->
     <resources>
       <resource>
         <directory>src/main/java</directory>
@@ -342,6 +342,6 @@
       </resource>
     </resources>
 
-    <!-- è§£å†³Mavené¡¹ç›®ç¼–è¯‘åŽclassesæ–‡ä»¶ä¸­æ²¡æœ‰.xmlé—®é¢˜ -->
+    <!-- ½â¾öMavenÏîÄ¿±àÒëºóclassesÎÄ¼þÖÐÃ»ÓÐ.xmlÎÊÌâ -->
   </build>
 </project>

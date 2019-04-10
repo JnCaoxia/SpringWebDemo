@@ -14,7 +14,7 @@
     <tx:annotation-driven />
     <context:annotation-config/>
 
-    <!-- å¼•å…¥æ‰€æœ‰é…ç½®æ–‡ä»¶ -->
+    <!-- ÒýÈëËùÓÐÅäÖÃÎÄ¼þ -->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
@@ -27,9 +27,9 @@
         </property>
     </bean>
 
-    <!--å¯ç”¨@AspectJæ”¯æŒ-->
+    <!--ÆôÓÃ@AspectJÖ§³Ö-->
     <aop:aspectj-autoproxy/>
-    <!-- ä½¿ç”¨annotation è‡ªåŠ¨æ³¨å†Œbean -->
+    <!-- Ê¹ÓÃannotation ×Ô¶¯×¢²ábean -->
     <context:component-scan base-package="com.caox"/>
 
     <bean id="fbHelloWorldService" class="com.caox.ThreadPool.FactoryBeanDemo">
@@ -43,7 +43,7 @@
     </bean>
 
     <bean id="car" class="com.caox.ThreadPool.FactoryBean.CarFactoryBean"
-          P:carInfo="æ³•æ‹‰åˆ©,400,2000000"/>
+          P:carInfo="·¨À­Àû,400,2000000"/>
 
     <bean id="student" class="com.caox.ThreadPool.FactoryBean.Student">
         <property name="name" value="zhangsan" />
@@ -55,24 +55,24 @@
         <property name="type" value="student" />
     </bean>
 
-    <!-- æ•°æ®æºé…ç½®æ–‡ä»¶ -->
+    <!-- Êý¾ÝÔ´ÅäÖÃÎÄ¼þ -->
     <import resource="spring-datasources.xml"/>
 
-    <!-- redisé…ç½®æ–‡ä»¶ -->
+    <!-- redisÅäÖÃÎÄ¼þ -->
     <import resource="spring-redis.xml"/>
 
     <!--spring-mvc.xml-->
     <import resource="spring-mvc.xml"/>
 
-    <!-- rabbitmqé…ç½®æ–‡ä»¶ -->
+    <!-- rabbitmqÅäÖÃÎÄ¼þ -->
     <!--<import resource="spring-rabbitmq.xml"/>-->
 
-    <!--quartz å®šæ—¶ä»»åŠ¡ spring-quartz-job.xml-->
+    <!--quartz ¶¨Ê±ÈÎÎñ spring-quartz-job.xml-->
     <!--<import resource="spring-quartz-job.xml"/>-->
 
-    <!--spring-activemqé…ç½®æ–‡ä»¶-->
+    <!--spring-activemqÅäÖÃÎÄ¼þ-->
     <!--<import resource="spring-activemq.xml"/>-->
 
-    <!--spring-rocketé…ç½®æ–‡ä»¶-->
+    <!--spring-rocketÅäÖÃÎÄ¼þ-->
     <import resource="spring-rocketmq.xml" />
 </beans>

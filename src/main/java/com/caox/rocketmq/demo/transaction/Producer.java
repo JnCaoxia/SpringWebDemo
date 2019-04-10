@@ -16,26 +16,26 @@ public class Producer {
         TransactionCheckListener transactionCheckListener = new TransactionCheckListenerImpl();
         TransactionMQProducer producer = new TransactionMQProducer("transaction_Producer");
         producer.setNamesrvAddr("127.0.0.1:9876");
-        // äº‹åŠ¡å›æŸ¥æœ€å°å¹¶å‘æ•°
+        // ÊÂÎñ»Ø²é×îĞ¡²¢·¢Êı
         producer.setCheckThreadPoolMinSize(2);
-        // äº‹åŠ¡å›æŸ¥æœ€å¤§å¹¶å‘æ•°
+        // ÊÂÎñ»Ø²é×î´ó²¢·¢Êı
         producer.setCheckThreadPoolMaxSize(2);
-        // é˜Ÿåˆ—æ•°
+        // ¶ÓÁĞÊı
         producer.setCheckRequestHoldMax(2000);
-        // è®¾ç½®äº‹åŠ¡å†³æ–­å¤„ç†ç±»  ã€æœåŠ¡å™¨å›æŸ¥å®¢æˆ·ç«¯Listenerã€‘
+        // ÉèÖÃÊÂÎñ¾ö¶Ï´¦ÀíÀà  ¡¾·şÎñÆ÷»Ø²é¿Í»§¶ËListener¡¿
         producer.setTransactionCheckListener(transactionCheckListener);
         producer.start();
 
         // String[] tags = new String[] { "TagA", "TagB", "TagC", "TagD", "TagE"};
-        // æœ¬åœ°äº‹åŠ¡çš„å¤„ç†é€»è¾‘ï¼Œç›¸å½“äºç¤ºä¾‹ä¸­æ£€æŸ¥Bobè´¦æˆ·å¹¶æ‰£é’±çš„é€»è¾‘  ã€æœ¬åœ°äº‹åŠ¡æ‰§è¡Œå™¨ã€‘
+        // ±¾µØÊÂÎñµÄ´¦ÀíÂß¼­£¬Ïàµ±ÓÚÊ¾ÀıÖĞ¼ì²éBobÕË»§²¢¿ÛÇ®µÄÂß¼­  ¡¾±¾µØÊÂÎñÖ´ĞĞÆ÷¡¿
         TransactionExecuterImpl tranExecuter = new TransactionExecuterImpl();
         for (int i = 1; i <= 2; i++) {
             try {
-                // æ„é€ MSGï¼Œçœç•¥æ„é€ å‚æ•°
+                // ¹¹ÔìMSG£¬Ê¡ÂÔ¹¹Ôì²ÎÊı
                 Message msg = new Message("TopicTransactionTest", "transaction" + i, "KEY" + i,
                         ("Hello RocketMQ " + i).getBytes());
                 String arg = "arg" + i;
-                // å‘é€æ¶ˆæ¯
+                // ·¢ËÍÏûÏ¢
                 SendResult sendResult = producer.sendMessageInTransaction(msg, tranExecuter, arg);
                 System.out.println(sendResult);
 
