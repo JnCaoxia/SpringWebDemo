@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- rocketmq配置 -->
+    <bean id="messageListeners" class="com.caox.rocketmq.listener.MessageListenerImpl"></bean>
+    <!-- 导入Spring配置文件 -->
+
+    <!-- CONSUMER CONFIG-->
+    <bean id="rocketmqConsumer" class="com.alibaba.rocketmq.client.consumer.DefaultMQPushConsumer" init-method="start" destroy-method="shutdown">
+        <property name="consumerGroup" value="${rocketmq.consumerGroup}"/>
+        <property name="instanceName">
+            <!-- 获取静态方法返回值作为参数值 -->
+            <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+                <property name="targetClass">
+                    <value>com.caox.rocketmq.util.RunTimeUtil</value>
+                </property>
+                <property name="targetMethod">
+                    <!-- 必须是静态方法 -->
+                    <value>getRocketMqUniqueInstanceName</value>
+                </property>
+            </bean>
+        </property>
+        <property name="namesrvAddr" value="${rocketmq.namesrvAddr}"/>
+        <property name="messageListener" ref="messageListeners"/>
+        <property name="subscription">
+            <map>
+                <entry key="${rocketmq.topic}" value="${rocketmq.tags}" />
+            </map>
+        </property>
+    </bean>
+
+    <!-- PRODUCE CONFIG -->
+    <bean id="rocketMQProducer" class="com.caox.rocketmq.producer.RocketMQProducer" init-method="init" destroy-method="destroy">
+        <property name="producerGroup" value="${rocketmq.producer.group}"/>
+        <property name="instanceName">
+            <!-- 获取静态方法返回值作为参数值 -->
+            <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+                <property name="targetClass">
+                    <value>com.caox.rocketmq.util.RunTimeUtil</value>
+                </property>
+                <property name="targetMethod">
+                    <!-- 必须是静态方法 -->
+                    <value>getRocketMqUniqueInstanceName</value>
+                </property>
+            </bean>
+        </property>
+        <property name="namesrvAddr" value="${rocketmq.namesrvAddr}"/>
+        <!-- 失败重试次数 -->
+        <property name="retryTimes" value="${rocketmq.producer.retryTimes}" />
+    </bean>
+</beans>
