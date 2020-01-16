@@ -7,9 +7,11 @@ import com.caox.ThreadPool.FactoryBean.CarFactoryBean;
 import com.caox.ThreadPool.FactoryBean.FactoryBeanPojo;
 import com.caox.ThreadPool.HelloWorldService;
 import com.caox.dao.DemoDao;
-import com.caox.dao.IUserDao;
+import com.caox.service.IUserDao;
+import com.caox.model.Address;
 import com.caox.model.User;
 import com.caox.service.DemoService;
+import com.caox.service.QueryService;
 import com.caox.utils.PhoneAddrUtil;
 import com.caox.utils.VerifyHelper;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +25,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import redis.clients.jedis.Jedis;
 
 import java.util.*;
 import java.util.TimerTask;
@@ -61,6 +64,19 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
 
 //    @Autowired
 //    private RocketService rocketService;
+
+    @Autowired
+    private QueryService queryService;
+
+    @Test
+    public void testQueryService(){
+
+        Address address = new Address();
+        address.setFlag(true);
+        address.setAddress("address2");
+       List<Address> result =  queryService.queryAddress(address);
+        log.info("call æŸ¥è¯¢ç»“æžœï¼š{}", result);
+    }
 
     @Test
     public void testDB(){
@@ -149,7 +165,7 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
     }
 
     /**
-     * ¿É»º´æÏß³Ì³Ø ÎÞ½çÏß³Ì³Ø£¬¿ÉÒÔ½øÐÐ×Ô¶¯Ïß³Ì»ØÊÕ
+     * ï¿½É»ï¿½ï¿½ï¿½ï¿½ß³Ì³ï¿½ ï¿½Þ½ï¿½ï¿½ß³Ì³Ø£ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ß³Ì»ï¿½ï¿½ï¿½
      */
     @Test
     public void testNewCachedThreadPool(){
@@ -170,13 +186,13 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
     }
 
     /**
-     * newFixedThreadPool ¹Ì¶¨´óÐ¡Ïß³Ì³Ø
+     * newFixedThreadPool ï¿½Ì¶ï¿½ï¿½ï¿½Ð¡ï¿½ß³Ì³ï¿½
      */
     @SuppressWarnings("all")
     @Test
     public void testNewFixedThreadPool(){
         ExecutorService fixedThreadPool = Executors.newFixedThreadPool(4);
-        log.info("¶¨³¤Ïß³Ì³ØµÄ´óÐ¡:{}", Runtime.getRuntime().availableProcessors());
+        log.info("ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì³ØµÄ´ï¿½Ð¡:{}", Runtime.getRuntime().availableProcessors());
         for (int i = 0; i < 10; i++) {
             final int index = i;
 
@@ -196,7 +212,7 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
     }
 
     /**
-     * µ¥Ïß³Ì»¯µÄExecutor
+     * ï¿½ï¿½ï¿½ß³Ì»ï¿½ï¿½ï¿½Executor
      */
     @SuppressWarnings("all")
     @Test
@@ -220,7 +236,7 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
     }
 
     /**
-     * ¶¨Ê±ÖÜÆÚÐÔÈÎÎñÖ´ÐÐ newScheduleThreadPool
+     * ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ newScheduleThreadPool
      */
     @Test
     public void testNewScheduleThreadPool(){
@@ -257,29 +273,29 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
             e1.printStackTrace();
         }
 
-        System.out.println("Ö÷Ïß³ÌÔÚÖ´ÐÐÈÎÎñ");
+        System.out.println("ï¿½ï¿½ï¿½ß³ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
         try {
-            System.out.println("taskÔËÐÐ½á¹û"+result.get());
+            System.out.println("taskï¿½ï¿½ï¿½Ð½ï¿½ï¿½"+result.get());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
 
-        System.out.println("ËùÓÐÈÎÎñÖ´ÐÐÍê±Ï");
+        System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½");
     }
 
     @Test
     public void  testCallableFutureTask(){
-        //µÚÒ»ÖÖ·½Ê½
+        //ï¿½ï¿½Ò»ï¿½Ö·ï¿½Ê½
 //        ExecutorService executor = Executors.newCachedThreadPool();
 //        Task task = new Task();
 //        FutureTask<Integer> futureTask = new FutureTask<Integer>(task);
 //        executor.submit(futureTask);
 //        executor.shutdown();
 
-        //µÚ¶þÖÖ·½Ê½£¬×¢ÒâÕâÖÖ·½Ê½ºÍµÚÒ»ÖÖ·½Ê½Ð§¹ûÊÇÀàËÆµÄ£¬Ö»²»¹ýÒ»¸öÊ¹ÓÃµÄÊÇExecutorService£¬Ò»¸öÊ¹ÓÃµÄÊÇThread
+        //ï¿½Ú¶ï¿½ï¿½Ö·ï¿½Ê½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½Ê½ï¿½Íµï¿½Ò»ï¿½Ö·ï¿½Ê½Ð§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÆµÄ£ï¿½Ö»ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê¹ï¿½Ãµï¿½ï¿½ï¿½ExecutorServiceï¿½ï¿½Ò»ï¿½ï¿½Ê¹ï¿½Ãµï¿½ï¿½ï¿½Thread
         Task task = new Task();
         FutureTask<Integer> futureTask = new FutureTask<Integer>(task);
         Thread thread = new Thread(futureTask);
@@ -291,17 +307,17 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
             e1.printStackTrace();
         }
 
-        System.out.println("Ö÷Ïß³ÌÔÚÖ´ÐÐÈÎÎñ");
+        System.out.println("ï¿½ï¿½ï¿½ß³ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
         try {
-            System.out.println("taskÔËÐÐ½á¹û"+futureTask.get());
+            System.out.println("taskï¿½ï¿½ï¿½Ð½ï¿½ï¿½"+futureTask.get());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
 
-        System.out.println("ËùÓÐÈÎÎñÖ´ÐÐÍê±Ï");
+        System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½");
     }
 
     @Test
@@ -321,7 +337,7 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
 
     @Test
     public void testCarFactoryBean() throws Exception{
-        // »ñÈ¡CarFactoryBeanµÄÊµÀý
+        // ï¿½ï¿½È¡CarFactoryBeanï¿½ï¿½Êµï¿½ï¿½
         CarFactoryBean carFactoryBean = (CarFactoryBean) context.getBean("&car");
         Car car = carFactoryBean.getObject();
         log.info("call testCarFactoryBean RESULT:{}", car);
@@ -408,7 +424,7 @@ public class RedisTest extends AbstractJUnit4SpringContextTests {
 class Task implements Callable<Integer>{
     @Override
     public Integer call() throws Exception {
-        System.out.println("×ÓÏß³ÌÔÚ½øÐÐ¼ÆËã");
+        System.out.println("ï¿½ï¿½ï¿½ß³ï¿½ï¿½Ú½ï¿½ï¿½Ð¼ï¿½ï¿½ï¿½");
         Thread.sleep(3000);
         int sum = 0;
         for(int i=0;i<100;i++)

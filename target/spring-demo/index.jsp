@@ -7,17 +7,17 @@
 %>
 
 <%
-//    //æ·»åŠ æ•°æ®
+//    //Ìí¼ÓÊı¾İ
 //    session.setAttribute("test", "Dragon");
-//    //æ›¿æ¢æ•°æ®
+//    //Ìæ»»Êı¾İ
 //    session.setAttribute("test", "long");
-//    //åˆ é™¤æ•°æ®
+//    //É¾³ıÊı¾İ
 //    session.removeAttribute("test");
 
-    //åˆ›å»ºä¸€ä¸ªuesrå¯¹è±¡å¹¶å°†å…¶æ·»åŠ åˆ°sessionä¸­
+    //´´½¨Ò»¸öuesr¶ÔÏó²¢½«ÆäÌí¼Óµ½sessionÖĞ
     session.setAttribute("uesr", new User());
 
-    //å°†åˆšåˆšåˆ›å»ºçš„uesrå¯¹è±¡ä»sessionä¸­åˆ é™¤
+    //½«¸Õ¸Õ´´½¨µÄuesr¶ÔÏó´ÓsessionÖĞÉ¾³ı
     session.removeAttribute("uesr");
 %>
 
@@ -25,9 +25,9 @@
 <html>
 <body>
 <h2>Hello World!</h2>
-<h2>æˆ‘æ˜¯ä¸€ä¸ªé•¿çš„ä¸å’‹æ ·çš„ä¸»é¡µé¢</h2>
+<h2>ÎÒÊÇÒ»¸ö³¤µÄ²»Õ¦ÑùµÄÖ÷Ò³Ãæ</h2>
 <hr>
-<h4>å½“å‰åœ¨çº¿çš„ç”¨æˆ·äººæ•°ï¼š ${OnlinePeople }</h4>
+<h4>µ±Ç°ÔÚÏßµÄÓÃ»§ÈËÊı£º ${OnlinePeople }</h4>
 </body>
 </html>
 
@@ -42,14 +42,14 @@
         var b = n > document.documentElement.scrollWidth-20;
         if(b && window.event.clientY < 0 || window.event.altKey)
         {
-            alert("æ˜¯å…³é—­è€Œéåˆ·æ–°");
-            window.event.returnValue = "<%System.out.println("a123"); %>"; //è¿™é‡Œå¯ä»¥æ”¾ç½®ä½ æƒ³åšçš„æ“ä½œä»£ç 
+            alert("ÊÇ¹Ø±Õ¶ø·ÇË¢ĞÂ");
+            window.event.returnValue = "<%System.out.println("a123"); %>"; //ÕâÀï¿ÉÒÔ·ÅÖÃÄãÏë×öµÄ²Ù×÷´úÂë
         }
     }
 
     $(window).unload(function(){
-        //è¿™é‡Œé¢å†™åœ¨å…³é—­é¡µé¢æ—¶ï¼Œè¦è°ƒç”¨çš„äº‹ä»¶
-        alert("é¡µé¢è¦å…³é—­äº†");
+        //ÕâÀïÃæĞ´ÔÚ¹Ø±ÕÒ³ÃæÊ±£¬Òªµ÷ÓÃµÄÊÂ¼ş
+        alert("Ò³ÃæÒª¹Ø±ÕÁË");
     });
 
 

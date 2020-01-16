@@ -12,7 +12,7 @@ import java.util.Map;
 public class DemoDao {
     private JdbcTemplate jdbcTemplate;
 
-    // 测试获取address信息
+    // 娴嬭瘯鑾峰彇address淇℃伅
     public List<Map<String,Object>> getAddressAll(){
         String sql = "select * from address";
         try{

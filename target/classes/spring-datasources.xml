@@ -40,4 +40,21 @@
     <bean id="demoDao" class="com.caox.dao.DemoDao">
         <property name="jdbcTemplate" ref ="jdbcTemplate"/>
     </bean>
+
+    <!-- mybatis自动扫描包下的mapper -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.caox.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sessionFactory"/>
+    </bean>
+
+    <!-- mybatis配置 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" name="sessionFactory">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath*:com/caox/dao/mapper/*Mapper.xml"/>
+        <!--<property name="plugins">-->
+            <!--<array>-->
+                <!--<ref bean="aopMybatislog"/>-->
+            <!--</array>-->
+        <!--</property>-->
+    </bean>
 </beans>

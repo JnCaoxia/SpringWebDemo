@@ -16,26 +16,19 @@ public class Producer {
         TransactionCheckListener transactionCheckListener = new TransactionCheckListenerImpl();
         TransactionMQProducer producer = new TransactionMQProducer("transaction_Producer");
         producer.setNamesrvAddr("127.0.0.1:9876");
-        // 事务回查最小并发数
         producer.setCheckThreadPoolMinSize(2);
-        // 事务回查最大并发数
         producer.setCheckThreadPoolMaxSize(2);
-        // 队列数
         producer.setCheckRequestHoldMax(2000);
-        // 设置事务决断处理类  【服务器回查客户端Listener】
         producer.setTransactionCheckListener(transactionCheckListener);
         producer.start();
 
         // String[] tags = new String[] { "TagA", "TagB", "TagC", "TagD", "TagE"};
-        // 本地事务的处理逻辑，相当于示例中检查Bob账户并扣钱的逻辑  【本地事务执行器】
         TransactionExecuterImpl tranExecuter = new TransactionExecuterImpl();
         for (int i = 1; i <= 2; i++) {
             try {
-                // 构造MSG，省略构造参数
                 Message msg = new Message("TopicTransactionTest", "transaction" + i, "KEY" + i,
                         ("Hello RocketMQ " + i).getBytes());
                 String arg = "arg" + i;
-                // 发送消息
                 SendResult sendResult = producer.sendMessageInTransaction(msg, tranExecuter, arg);
                 System.out.println(sendResult);
 

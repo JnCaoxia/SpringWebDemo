@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.caox.dao.IQueryDao">
+	
+	<select id="queryAddress" resultType="com.caox.model.Address">
+		select id, address, remark
+		from address where
+		1=1
+		<if test="flag==true">
+         and  address = #{address}
+		</if>
+	</select>
+</mapper>

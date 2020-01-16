@@ -14,7 +14,7 @@
     <tx:annotation-driven />
     <context:annotation-config/>
 
-    <!-- 引入所有配置文件 -->
+    <!-- �������������ļ� -->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
@@ -27,9 +27,9 @@
         </property>
     </bean>
 
-    <!--启用@AspectJ支持-->
+    <!--����@AspectJ֧��-->
     <aop:aspectj-autoproxy/>
-    <!-- 使用annotation 自动注册bean -->
+    <!-- ʹ��annotation �Զ�ע��bean -->
     <context:component-scan base-package="com.caox"/>
 
     <bean id="fbHelloWorldService" class="com.caox.ThreadPool.FactoryBeanDemo">
@@ -43,7 +43,7 @@
     </bean>
 
     <bean id="car" class="com.caox.ThreadPool.FactoryBean.CarFactoryBean"
-          P:carInfo="法拉利,400,2000000"/>
+          P:carInfo="������,400,2000000"/>
 
     <bean id="student" class="com.caox.ThreadPool.FactoryBean.Student">
         <property name="name" value="zhangsan" />
@@ -55,24 +55,24 @@
         <property name="type" value="student" />
     </bean>
 
-    <!-- 数据源配置文件 -->
+    <!-- ����Դ�����ļ� -->
     <import resource="spring-datasources.xml"/>
 
-    <!-- redis配置文件 -->
+    <!-- redis�����ļ� -->
     <import resource="spring-redis.xml"/>
 
     <!--spring-mvc.xml-->
     <import resource="spring-mvc.xml"/>
 
-    <!-- rabbitmq配置文件 -->
+    <!-- rabbitmq�����ļ� -->
     <!--<import resource="spring-rabbitmq.xml"/>-->
 
-    <!--quartz 定时任务 spring-quartz-job.xml-->
+    <!--quartz ��ʱ���� spring-quartz-job.xml-->
     <!--<import resource="spring-quartz-job.xml"/>-->
 
-    <!--spring-activemq配置文件-->
+    <!--spring-activemq�����ļ�-->
     <!--<import resource="spring-activemq.xml"/>-->
 
-    <!--spring-rocket配置文件-->
+    <!--spring-rocket�����ļ�-->
     <import resource="spring-rocketmq.xml" />
 </beans>

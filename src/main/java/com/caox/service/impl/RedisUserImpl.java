@@ -1,5 +1,7 @@
-package com.caox.dao;
+package com.caox.service.impl;
 
+import com.caox.dao.BaseRedisDao;
+import com.caox.service.IUserDao;
 import com.caox.model.User;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
@@ -13,7 +15,7 @@ import org.springframework.stereotype.Repository;
  * @date : 2018/12/28 10:18
  */
 @Repository
-public class RedisUserDao extends BaseRedisDao<String, User> implements IUserDao {
+public class RedisUserImpl extends BaseRedisDao<String, User> implements IUserDao {
 
     @Override
     public boolean save(final User user) {

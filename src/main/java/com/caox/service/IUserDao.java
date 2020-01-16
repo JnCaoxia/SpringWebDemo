@@ -1,4 +1,4 @@
-package com.caox.dao;
+package com.caox.service;
 
 
 import com.caox.model.User;
