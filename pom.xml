@@ -19,7 +19,7 @@
     <maven.compiler.target>1.7</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!-- spring�汾�� -->
-    <spring.version>4.1.1.RELEASE</spring.version>
+    <spring.version>5.3.19</spring.version>
     <!-- mybatis�汾�� -->
     <mybatis.version>3.2.6</mybatis.version>
     <!-- log4j��־�ļ�������汾 -->
